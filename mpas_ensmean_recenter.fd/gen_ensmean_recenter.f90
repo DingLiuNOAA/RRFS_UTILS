@@ -66,7 +66,7 @@ program gen_be_ensmean
 
   mype1 = mype + 1
 
-  if (mype == 0) print*, "Calculate ensemble mean for FV3LAM"
+  if (mype == 0) print*, "Calculate ensemble mean for MPAS"
 
   ! Get user input from command line
 
