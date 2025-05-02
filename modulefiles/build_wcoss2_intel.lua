@@ -4,12 +4,8 @@ NOAA operational machine WCOSS2 (Catcus/Dogwood)
 ]])
 
 whatis([===[Loads libraries needed for building the RRFS workflow on WCOSS2 ]===])
-local pkgName    = myModuleName()
-local pkgVersion = myModuleVersion() or "1.0"
-local pkgNameVer = myModuleFullName()
 
 load(pathJoin("envvar", os.getenv("envvar_ver")))
-
 load(pathJoin("PrgEnv-intel", os.getenv("PrgEnv_intel_ver")))
 load(pathJoin("intel", os.getenv("intel_ver")))
 load(pathJoin("craype", os.getenv("craype_ver")))
@@ -25,14 +21,12 @@ load(pathJoin("esmf", os.getenv("esmf_ver")))
 --load(pathJoin("fms", os.getenv("fms_ver")))
 load(pathJoin("gftl-shared", os.getenv("gftl_shared_ver")))
 load(pathJoin("mapl", os.getenv("mapl_ver")))
-
 load(pathJoin("bacio", os.getenv("bacio_ver")))
 load(pathJoin("crtm", os.getenv("crtm_ver")))
 load(pathJoin("g2", os.getenv("g2_ver")))
 --load(pathJoin("g2tmpl", os.getenv("g2tmpl_ver")))
 load(pathJoin("ip", os.getenv("ip_ver")))
 load(pathJoin("sp", os.getenv("sp_ver")))
-
 load(pathJoin("bufr", os.getenv("bufr_ver")))
 load(pathJoin("gfsio", os.getenv("gfsio_ver")))
 load(pathJoin("landsfcutil", os.getenv("landsfcutil_ver")))
