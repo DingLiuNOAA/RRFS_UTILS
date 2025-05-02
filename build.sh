@@ -21,6 +21,10 @@ elif [[ -d /glade ]] ; then
 elif [[ -d /work/noaa ]] ; then  ### orion
     platform=orion
 
+################# WCOSS2 ####################
+elif [[ -d /lfs ]] ; then  ### orion
+    platform=wcoss2
+
 ################# Generic ####################
 else
     echo -e "\nunknown machine"
