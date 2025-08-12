@@ -3,10 +3,15 @@
 
 dir_root=$(pwd)
 
-################# Hera ####################
-if [[ "`grep -i "hera" /etc/hosts | head -n1`" != "" ]] ; then
+################# Hera or Ursa ####################
+if [[ -d /scratch3 ]]; then
+    if [[ -d /apps/slurm_hera ]]; then
+        platform=hera
+    else
+        platform=ursa
+    fi
     source /etc/profile.d/modules.sh
-    platform=hera
+
 ################# Jet ####################
 elif [[ -d /jetmon ]] ; then
     source /etc/profile.d/modules.sh
