@@ -23,7 +23,6 @@ elif [[ -d /work/noaa ]] ; then  ### orion
 
 ################# Gaea C6 ####################
 elif [[ -d /gpfs/f6 ]] ; then ### gaea c6
-    module reset
     platform=gaeaC6
 
 ################# WCOSS2 ####################
