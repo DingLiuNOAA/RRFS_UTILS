@@ -21,6 +21,11 @@ elif [[ -d /glade ]] ; then
 elif [[ -d /work/noaa ]] ; then  ### orion
     platform=orion
 
+################# Gaea C6 ####################
+elif [[ -d /gpfs/f6 ]] ; then ### gaea c6
+    module reset
+    platform=gaeaC6
+
 ################# WCOSS2 ####################
 elif [[ -d /lfs ]] ; then  ### orion
     platform=wcoss2
