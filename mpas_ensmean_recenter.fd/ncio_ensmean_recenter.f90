@@ -194,7 +194,10 @@ subroutine ncio_ensmean_recenter(ensize,mype,new_comm,l_write_mean,l_recenter,va
 
    if(l_recenter) then
       l_positive=.false.
-      if( trim(varname)=="ref_f3d" .or. trim(varname)=="qv" .or. trim(varname)=="q2" ) then 
+      if( trim(varname)=="ref_f3d" .or. trim(varname)=="qv" .or. trim(varname)=="q2" .or. &
+          trim(varname)=="qc" .or. trim(varname)=="qr" .or. trim(varname)=="qi" .or. &
+          trim(varname)=="qs" .or. trim(varname)=="qg" .or. trim(varname)=="ni" .or. &
+          trim(varname)=="nr" .or. trim(varname)=="ng" .or. trim(varname)=="nc") then 
          l_positive=.true.
       endif
       if(mype==0) then

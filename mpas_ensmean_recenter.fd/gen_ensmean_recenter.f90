@@ -36,8 +36,8 @@ program gen_be_ensmean
 
    integer :: totalnumvar
    character (len=20), allocatable  ::  tailist_all(:)
-   character (len=20), allocatable  ::  varlist_all(:)
-   character (len=20)    :: varname                       ! Variable to search for.
+   character (len=30), allocatable  ::  varlist_all(:)
+   character (len=30)    :: varname                       ! Variable to search for.
 
    ! === variables for mpi 
    integer                :: iret, mype, npe, mype1, orig_group, new_group, new_comm
@@ -109,7 +109,7 @@ program gen_be_ensmean
      totalnumvar=totalnumvar+numvar(k)
   enddo
   if(totalnumvar <=0) then
-     write(6,'(a)')'***ERROR***  varaible number is 0'
+     write(6,'(a)')'***ERROR***  variable number is 0'
      call mpi_abort(mpi_comm_world,99,iret)
      stop
   endif
@@ -154,7 +154,7 @@ program gen_be_ensmean
 ! find how many cores will be used
   num_cores=groupsize*numgroup
 
-! find how many iterations needed to cover all the varaibles
+! find how many iterations needed to cover all the variables
 !  num_iteration=totalnumvar/numgroup+1
 
 ! how to distribute variables to group and iteration
