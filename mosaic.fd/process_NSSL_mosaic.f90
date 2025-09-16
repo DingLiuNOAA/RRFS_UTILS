@@ -62,6 +62,7 @@ program process_NSSL_mosaic
 !  namelist and other variables for netcdf output
 !
 !  output_netcdf             logical controlling whether netcdf output file should be created
+!  grid_spacing_deg          distance (deg latitude and longitude) between grid points
 !  max_height                maximum height (m MSL) for data to be retained
 !  use_clear_air_type        logical controlling whether to output clear-air (non-precipitation) reflectivity obs
 !  precip_dbz_thresh         threshold (dBZ) for minimum reflectivity that is considered precipitation
@@ -73,6 +74,7 @@ program process_NSSL_mosaic
 !  clear_air_dbz_vert_skip   vertical thinning factor for clear air reflectivity data
 !
   logical :: output_netcdf = .false.
+  real :: grid_spacing_deg = 0.2
   real :: max_height = 20000.0
   logical :: use_clear_air_type = .false.
   real :: precip_dbz_thresh = 15.0
@@ -82,7 +84,7 @@ program process_NSSL_mosaic
   integer :: precip_dbz_vert_skip = 0
   integer :: clear_air_dbz_horiz_skip = 0
   integer :: clear_air_dbz_vert_skip = 0
-  namelist/setup_netcdf/ output_netcdf, max_height,                       &
+  namelist/setup_netcdf/ output_netcdf, grid_spacing_deg, max_height,     &
                          use_clear_air_type, precip_dbz_thresh,           &
                          clear_air_dbz_thresh, clear_air_dbz_value,       &
                          precip_dbz_horiz_skip, precip_dbz_vert_skip,     &
@@ -109,7 +111,6 @@ program process_NSSL_mosaic
   INTEGER(i_kind)  ::  numlvl,numref
   integer :: maxcores
   real :: rad2deg,min_cell_lat,min_cell_lon
-  real :: gridspace
 
 !**********************************************************************
 !
@@ -121,7 +122,6 @@ program process_NSSL_mosaic
 
   if(mype==0) write(*,*) mype, 'deal with mosaic'
 
-  gridspace=0.2
   datapath="./"
   open(15, file='namelist.mosaic')
     read(15,setup)
@@ -133,6 +133,7 @@ program process_NSSL_mosaic
     write(6,*) 'analysis_time = ', analysis_time
     write(6,*) 'dataPath = ', dataPath
     write(6,*) 'output_netcdf = ', output_netcdf
+    write(6,*) 'grid_spacing_deg = ', grid_spacing_deg
     write(6,*) 'max_height = ', max_height
     write(6,*) 'use_clear_air_type = ', use_clear_air_type
     write(6,*) 'precip_dbz_thresh = ', precip_dbz_thresh
@@ -186,16 +187,16 @@ program process_NSSL_mosaic
      cell_lat=cell_lat*rad2deg
      min_cell_lat=minval(cell_lat)
      min_cell_lon=minval(cell_lon)
-     nlon=int((maxval(cell_lon)-min_cell_lon)/gridspace)
-     nlat=int((maxval(cell_lat)-min_cell_lat)/gridspace)
+     nlon=int((maxval(cell_lon)-min_cell_lon)/grid_spacing_deg)
+     nlat=int((maxval(cell_lat)-min_cell_lat)/grid_spacing_deg)
      deallocate(cell_lon)
      deallocate(cell_lat)
      allocate(xlon(nlon,nlat))
      allocate(ylat(nlon,nlat))
      do j=1,nlat
      do i=1,nlon
-        xlon(i,j)=min_cell_lon+gridspace*float(i)
-        ylat(i,j)=min_cell_lat+gridspace*float(j)
+        xlon(i,j)=min_cell_lon+grid_spacing_deg*float(i)
+        ylat(i,j)=min_cell_lat+grid_spacing_deg*float(j)
      enddo
      enddo
      if(mype==0) then
