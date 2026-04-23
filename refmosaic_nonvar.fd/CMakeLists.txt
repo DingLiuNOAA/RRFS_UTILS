@@ -14,7 +14,7 @@ target_link_libraries(process_NSSL_mosaic_nonvar.exe PRIVATE ${PROJECT_NAME}::ki
 					             PRIVATE ${PROJECT_NAME}::mpasio
                                                      PRIVATE NetCDF::NetCDF_Fortran
                                                      PRIVATE g2::g2_4
-                                                     PRIVATE bacio::bacio_4
+                                                     PRIVATE bacio::bacio
                                                      PRIVATE bufr::bufr_4
                                                      PRIVATE MPI::MPI_Fortran)
 
