@@ -22,7 +22,7 @@ if {![info exists ::env(LMOD_VERSION_MAJOR)]} {
     module load nco/5.3.3
     module load wgrib2/3.8.0
     module load prod_util/2.1.2
-    module load fms/2.25.03-gfs-constants
+    module load fms/2025.03-gfs-constants
 } else {
     depends-on stack-gcc/9.2.0
     depends-on stack-openmpi/4.1.7a1
