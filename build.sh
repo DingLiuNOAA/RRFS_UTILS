@@ -2,7 +2,7 @@
 #
 
 dir_root=$(pwd)
-COMPILER=${COMPILER:-intel}
+COMPILER=${COMPILER:-gnu}
 
 ################# Hera or Ursa ####################
 if [[ -d /scratch3 ]]; then
@@ -40,6 +40,10 @@ elif [[ -d /gpfs/f6 ]] ; then ### gaea c6
 elif [[ -d /lfs ]] ; then  ### orion
     platform=wcoss2
 
+################# Azure ######################
+elif [[ -d /shared ]] ; then
+    platform=azure
+
 ################# Generic ####################
 else
     echo -e "\nunknown machine"
@@ -53,7 +57,7 @@ fi
 
 module purge
 module use ${dir_root}/modulefiles
-module load build_${platform}_${COMPILER}.lua
+module load build_${platform}_${COMPILER}
 module list 
 
 build_root=${dir_root}/build

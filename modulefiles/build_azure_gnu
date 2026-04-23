@@ -1,0 +1,49 @@
+#%Module
+#
+# Loads environment for rrfs workflow on native Azure Cyclecloud
+#
+
+module use /shared/spack-stack/envs/ue-gcc9-az/modules/Core
+
+if {![info exists ::env(LMOD_VERSION_MAJOR)]} {
+    module load stack-gcc/9.2.0
+    module load stack-openmpi/4.1.7a1
+    module load cmake/3.31.7
+    module load jasper/4.2.4
+    module load zlib/1.2.11
+    module load libpng/1.6.37
+    module load parallelio/2.6.2
+    module load g2/3.5.1
+    module load g2tmpl/1.17.0
+    module load bufr/12.1.0
+    module load ncio/1.1.2
+    module load w3emc/2.13.0
+    module load w3nco/2.4.1
+    module load nco/5.3.3
+    module load wgrib2/3.8.0
+    module load prod_util/2.1.2
+    module load fms/2.25.03-gfs-constants
+} else {
+    depends-on stack-gcc/9.2.0
+    depends-on stack-openmpi/4.1.7a1
+    depends-on cmake/3.31.7
+    depends-on jasper/4.2.4
+    depends-on libpng/1.6.37
+    depends-on zlib/1.2.11
+    depends-on parallelio/2.6.2
+    depends-on g2/3.5.1
+    depends-on g2tmpl/1.17.0
+    depends-on bufr/12.1.0
+    depends-on ncio/1.1.2
+    depends-on w3emc/2.13.0
+    depends-on w3nco/2.4.1
+    depends-on nco/5.3.3
+    depends-on wgrib2/3.8.0
+    depends-on prod_util/2.1.2
+    depends-on fms/2025.03-gfs-constants
+}
+
+setenv CMAKE_C_COMPILER {mpicc}
+setenv CMAKE_CXX_COMPILER {mpic++}
+setenv CMAKE_Fortran_COMPILER {mpifort}
+setenv CMAKE_Platform {azure.gnu}
