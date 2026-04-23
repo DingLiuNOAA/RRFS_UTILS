@@ -24,7 +24,7 @@ target_link_libraries(process_NSSL_mosaic.exe PRIVATE ${PROJECT_NAME}::ncio
                                               PRIVATE NetCDF::NetCDF_Fortran
                                               PRIVATE g2::g2_4
                                               PRIVATE g2tmpl::g2tmpl
-                                              PRIVATE bacio::bacio_4
+                                              PRIVATE bacio::bacio
                                               PRIVATE MPI::MPI_Fortran)
 
 if(OpenMP_Fortran_FOUND)
@@ -43,7 +43,7 @@ install(
 #                                                   PRIVATE g2::g2_4
 #                                                   PRIVATE g2tmpl::g2tmpl
 #                                                   PRIVATE bufr::bufr_4
-#                                                   PRIVATE bacio::bacio_4
+#                                                   PRIVATE bacio::bacio
 #                                                   PRIVATE MPI::MPI_Fortran)
 #
 #if(OpenMP_Fortran_FOUND)
