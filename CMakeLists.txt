@@ -35,7 +35,7 @@ if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "^(GNU|Intel)$")
 endif()
 
 # User options
-option(OPENMP "Enable OpenMP Threading" OFF)
+option(OPENMP "Enable OpenMP Threading" ON)
 
 # Echo user options
 message(STATUS "OPENMP ................. ${OPENMP}")
