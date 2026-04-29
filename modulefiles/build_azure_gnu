@@ -3,7 +3,7 @@
 # Loads environment to build RRFS_UTILS on native Azure Cyclecloud
 #
 
-module use /shared/spack-stack-1.9.2/envs/ue-gcc9-az/modules/Core
+module use /shared/spack-stack-1.9.2/envs/ue-gcc9-az/install/modulefiles/Core
 
 if {![info exists ::env(LMOD_VERSION_MAJOR)]} {
     module load stack-gcc/9.2.0
